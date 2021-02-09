@@ -1,0 +1,111 @@
+.gmainright {
+	width: 45% !important;
+}
+
+.gmainleft {
+	width: 55% !important;
+
+	.gadditional {
+		text-align: right;
+	}
+
+	.gstartdate {
+		text-align: right;
+	}
+
+	.genddate {
+		text-align: right;
+	}
+
+	.gadditional-weightPercent {
+		max-width: 150px !important;
+	}
+
+	.gadditional-pComp {
+		max-width: 150px !important;
+	}
+
+	.gadditional-roleName {
+		max-width: 150px !important;
+
+		&.gtaskheading {
+			text-align: center;
+		}
+	}
+
+	.gtaskname {
+		min-width: 290px !important;
+		max-width: 460px !important;
+		width: 290px !important;
+
+		div {
+			min-width: 100% !important;
+			width: 100% !important;
+		}
+	}
+}
+
+
+.gstartdate {
+	max-width: 110px !important;
+	div {
+		width: auto !important;
+		text-align: right !important;
+	}
+}
+
+tr.gname {
+	cursor: pointer !important;
+}
+
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
+// .gcharttableh {
+// 	margin-bottom: 0px !important;
+// }
+
+tr.gname {
+	td {
+		vertical-align: middle;
+	}
+
+	&.is-active {
+		td {
+			background-color: rgb(194, 212, 247);
+		}
+	}
+}
+
+.floating-taskbar {
+	width: 200px;
+    position: fixed;
+    right: 15px;
+    top: 25%;
+	z-index: 35;
+	
+	.menu-label {
+		background-color: #eaeaff;
+		text-align: center;
+		padding-top: .7rem;
+		padding-bottom: .7rem;
+		margin: 0px !important;
+	}
+
+	.menu-label + .menu-list {
+		background-color: #eaeaff;
+
+		li {
+			margin-top: 0px !important;
+		}
+	}
+}

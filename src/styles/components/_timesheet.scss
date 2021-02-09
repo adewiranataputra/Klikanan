@@ -1,0 +1,178 @@
+.task-grouped {
+	margin-bottom: 1rem;
+
+	.task-group-header {
+		background: linear-gradient(90deg, rgb(128, 226, 133), rgb(47, 255, 220));
+		color: $dark;
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		line-height: 1.25;
+		padding: .75em;
+		position: relative;
+		font-family: $staat;
+		font-size: 1.2em;
+		cursor: pointer;
+	}
+
+	.task-container {
+		background-color: $success-light;
+		padding: .75em;
+
+		.level-item:not(:last-child) {
+			margin-right: 5px;
+		}
+
+		.columns {
+			padding: 0px .375em .75em .375em;
+
+			.column {
+				padding: .7em .375rem 0px .375rem;
+			}
+
+			.column:nth-child(3n+2) {
+				padding: .7em 0.35em 0px .35rem;
+			}
+		}
+	}
+
+	&.is-always-show {
+		.task-group-header {
+			cursor: default;
+
+			.tag {
+				font-family: $roboto;
+			}
+		}
+	}
+
+	&.is-delayed {
+		.task-group-header {
+			background: linear-gradient(90deg, rgb(238, 198, 66), rgb(250, 237, 59));
+			color: $dark;
+		}
+
+		.task-container {
+			background-color: $warning-light;
+			.timesheet {
+				.card-content:first-child {
+					background-color: $warning;
+				}
+			}
+		}
+	}
+
+	&.is-success {
+		.task-group-header {
+			background: linear-gradient(90deg, rgb(66, 212, 238), rgb(59, 244, 250));
+			color: $dark;
+		}
+
+		.task-container {
+			background-color: $info-light;
+			.timesheet {
+				.card-content:first-child {
+					background-color: $info;
+				}
+			}
+		}
+	}
+
+	&.is-scheduled {
+		.task-group-header {
+			background: linear-gradient(90deg, $dark, $grey);
+			color: $light;
+		}
+
+		.task-container {
+			background-color: $grey-lighter;
+			.timesheet {
+				.card-content:first-child {
+					background-color: $grey-light;
+				}
+			}
+		}
+	}
+}
+
+@supports (display: grid) {
+	.task-container {
+		.columns {
+			padding: .75em !important;
+			display: grid !important;
+			grid-gap: .75em;
+  			grid-template-columns: repeat(3, 1fr);
+
+			.column {
+				padding: 0px !important;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.task-divider {
+	padding: .75em 1em;
+	border-top: 1px solid $dark;
+	border-bottom: 1px solid $dark;
+	background-color: rgba(54, 54, 54, 0.1);
+	width: 100%;
+	margin: 1em 0px;
+
+	&.no-top-margin {
+		margin-top: 0px;
+	}
+}
+
+.timesheet {
+	box-shadow: none !important;
+	border: solid rgb(189, 189, 189) 1px;
+	border-radius: 5px;
+	cursor: pointer;
+
+	&:hover:not(.is-scheduled) {
+		box-shadow: 0 0.5em 1em -0.125em #0a0a0a1a !important;
+	}
+
+	&.is-scheduled {
+		cursor: default;
+	}
+
+	.card-content:first-child {
+		background-color: rgb(163, 228, 217);
+		min-height: 96px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			text-align: center;
+		}
+	}
+
+	.timesheet-progress {
+		width: 100%;
+		progress {
+			border-radius: 0px;
+		}
+
+		p {
+			font-size: .9em;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+
+		.level-item {
+			margin-bottom: 5px !important;
+			&:first-child {
+				margin-right: 5px !important;
+			}
+		}
+	}
+
+	.message-body {
+		padding: .75em 1.5em;
+		color: $dark !important;
+		font-weight: bolder;
+	}
+}

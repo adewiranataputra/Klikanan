@@ -1,0 +1,60 @@
+.file-item {
+	display: grid;
+	padding: 8px 0px;
+	grid-template-columns: 28px 1fr 78px;
+
+	&.has-single-button {
+		grid-template-columns: 28px 1fr 34px;
+	}
+
+	&.has-no-buttons {
+		margin-right: 0px;
+		grid-template-columns: 28px 1fr;
+
+		&.has-no-checkbox {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&.has-no-checkbox {
+		grid-template-columns: 1fr 78px;
+
+		&.has-single-button {
+			grid-template-columns: 1fr 34px;
+		}
+	}
+
+	.checkbox-container {
+		padding-top: 6px;
+	}
+
+	.filename {
+		margin: 0px 8px;
+
+		p {
+			width: 100%;
+			max-width: 500px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		&:hover {
+			background-color: $info-light;
+		}
+	}
+
+	& + .file-item {
+		border-top: solid 1px $grey-lighter;
+	}
+}
+
+.panel {
+	.file-item {
+		padding: 5px;
+	}
+
+	.panel-heading + .file-item {
+		margin-top: 3px;
+	}
+}

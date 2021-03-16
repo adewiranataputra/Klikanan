@@ -52,15 +52,15 @@
                         <div class="card dashboard-rounded">
                             <p class="panel-heading">Activations</p>
                             <div class="card-content" v-if="isValidation">
-                                <activation-chart :activation="activation"></activation-chart>
+                                <chart :chart="activation"></chart>
                             </div>
                         </div>
                     </div>
                     <div class="column">
                         <div class="card dashboard-rounded">
                             <p class="panel-heading">BAST</p>
-                            <div class="card-content">
-                                <!-- <activation-chart></activation-chart> -->
+                            <div class="card-content" v-if="isValidation">
+                                <chart :chart="cbats"></chart>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                         <div class="card dashboard-rounded">
                                 <p class="panel-heading">IWO - 2020</p>
                                 <div class="card-content">
-                                    <iwo-chart></iwo-chart>
+                                    <!-- <iwo-chart></iwo-chart> -->
                                 </div>
                         </div>
                     </div>
@@ -90,24 +90,26 @@
 </template>
 
 <script>
-import ActivationChart from '@/components/AM/Dashboard/Chart'
+import chart from '@/components/AM/Dashboard/Chart'
 import axios from 'axios'
 
 export default {
     components: {
-        ActivationChart,
+        chart,
     },
     data() {
         return {
             Value:13131331,
             activation: {},
+            cbats: {},
             isLoading: true,
-            isValidation: false
+            isValidation: false,
         }
     },
     methods: {
         getActivation() {
             this.isLoading = true;
+            this.isValidation=false;
             let self = this;
             axios
                 .get("http://localhost:3000/Activations")
@@ -119,10 +121,26 @@ export default {
                     console.log(error);
                 })
                 .finally(() => (self.isLoading = false));
+        },
+        getBAST() {
+            this.isLoading = true;
+            this.isValidation = false;
+            let self = this;
+            axios
+                .get("http://localhost:3000/BAST")
+                .then(function(response) {
+                    self.cbats = response.data
+                    self.isValidation = true
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+                .finally(() => (self.isLoading = false));
         }
     },
     mounted() {
         this.getActivation()
+        this.getBAST()
     }
 }
 </script>

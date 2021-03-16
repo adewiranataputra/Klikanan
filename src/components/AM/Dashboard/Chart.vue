@@ -3,22 +3,22 @@ import { Bar } from 'vue-chartjs'
 export default {
     extends: Bar,
     props: {
-      activation: {
+      chart: {
         type: Object,
 			  required: true
-      }
+      },
     },
     data () {
       return {
         datacollection: {
-          labels: this.activation.title,
+          labels: this.chart.title,
           datasets: [
             {
               backgroundColor: ["#FD0333", "#F8C310", "#43DEFA", "#43FAD0", "#05F821", "#02AC16"],
               pointBackgroundColor: 'white',
               borderWidth: 1,
               pointBorderColor: '#249EBF',
-              data: this.activation.value
+              data: this.chart.value
             }
           ]
         },

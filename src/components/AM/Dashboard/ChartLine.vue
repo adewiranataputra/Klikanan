@@ -1,15 +1,15 @@
 <script>
-import { Bar } from 'vue-chartjs'
+import { Line } from 'vue-chartjs'
 export default {
-    extends: Bar,
-    props: ['chart', 'type',true],
+    extends: Line,
+    props: ['chart'],
     data () {
       return {
         datacollection: {
           labels: this.chart.title,
           datasets: [
             {
-              backgroundColor: ["#FD0333", "#F8C310", "#43DEFA", "#43FAD0", "#05F821", "#02AC16"],
+              backgroundColor: ["#3a6351"],
               pointBackgroundColor: 'white',
               borderWidth: 1,
               pointBorderColor: '#249EBF',
@@ -31,9 +31,6 @@ export default {
             xAxes: [ {
               gridLines: {
                 display: false
-              },
-              ticks: {
-                fontColor: ["#FD0333", "#F8C310", "#43DEFA", "#43FAD0", "#05F821", "#02AC16"]
               }
             }]
           },

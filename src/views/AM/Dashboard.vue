@@ -52,7 +52,7 @@
                         <div class="card dashboard-rounded">
                             <p class="panel-heading">Activations</p>
                             <div class="card-content" v-if="isValidation">
-                                <chart :chart="activation"></chart>
+                                <chart :chart="activation" type="Bar"></chart>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                         <div class="card dashboard-rounded">
                             <p class="panel-heading">BAST</p>
                             <div class="card-content" v-if="isValidation">
-                                <chart :chart="cbats"></chart>
+                                <chart :chart="cbast" type="Bar"></chart>
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
                     <div class="column">
                         <div class="card dashboard-rounded">
                                 <p class="panel-heading">IWO - 2020</p>
-                                <div class="card-content">
-                                    <!-- <iwo-chart></iwo-chart> -->
+                                <div class="card-content" v-if="isValidation">
+                                    <chart-line :chart="ciwo" height="100"></chart-line>
                                 </div>
                         </div>
                     </div>
@@ -91,25 +91,28 @@
 
 <script>
 import chart from '@/components/AM/Dashboard/Chart'
+import ChartLine from '@/components/AM/Dashboard/ChartLine'
 import axios from 'axios'
 
 export default {
     components: {
         chart,
+        ChartLine,
     },
     data() {
         return {
             Value:13131331,
             activation: {},
-            cbats: {},
+            cbast: {},
+            ciwo: {},
             isLoading: true,
             isValidation: false,
         }
     },
     methods: {
         getActivation() {
-            this.isLoading = true;
-            this.isValidation=false;
+            this.isLoading = false;
+            this.isValidation=true;
             let self = this;
             axios
                 .get("http://localhost:3000/Activations")
@@ -122,25 +125,43 @@ export default {
                 })
                 .finally(() => (self.isLoading = false));
         },
-        getBAST() {
-            this.isLoading = true;
+        getBast() {
+            this.isLoading = false;
             this.isValidation = false;
             let self = this;
             axios
                 .get("http://localhost:3000/BAST")
                 .then(function(response) {
-                    self.cbats = response.data
-                    self.isValidation = true
+                    // console.log(response.data)
+                    self.cbast = response.data
+                    self.isValidation = false
                 })
                 .catch(function(error) {
                     console.log(error);
                 })
                 .finally(() => (self.isLoading = false));
+        },
+        getIwo() {
+            this.isLoading = true;
+            this.isValidation = false;
+            let self = this;
+            axios
+                .get("http://localhost:3000/IWO")
+                .then(function(response) {
+                    // console.log(response.data)
+                    self.ciwo = response.data
+                    self.isValidation = true
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+                .finally(() => (self.isLoading = true));
         }
     },
     mounted() {
-        this.getActivation()
-        this.getBAST()
+        this.getActivation(),
+        this.getBast(),
+        this.getIwo()
     }
 }
 </script>
